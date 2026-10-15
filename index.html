@@ -110,7 +110,7 @@
     <script>
         const viewer = document.getElementById("menuViewer");
 
-        // Change this number to match your total JPG pages.
+        // Change this number to match your total PNG pages.
         const totalPages = 8;
 
         function showStatus(message) {
@@ -124,14 +124,14 @@
             const img = document.createElement("img");
 
             img.className = "menu-page";
-            img.src = `menu/${i}.jpg`;
+            img.src = `menu/${i}.png`;
             img.alt = `Menu page ${i}`;
             img.loading = i === 1 ? "eager" : "lazy";
             img.decoding = "async";
 
             img.onerror = function () {
                 this.remove();
-                showStatus(`Could not load menu/${i}.jpg`);
+                showStatus(`Could not load menu/${i}.png`);
             };
 
             viewer.appendChild(img);

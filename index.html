@@ -1,46 +1,10 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <title>Basil Vally Menu</title>
-    <meta name="description" content="Basil Valley Menu">
-    <meta name="robots" content="noindex, nofollow">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#111111">
-    <meta property="og:image" content="menu/1.jpg">
-
-    <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Open+Sans:400,700|Ubuntu:400,700|Great+Vibes" rel="stylesheet" type="text/css">
-
-    <!-- Flipbook Core Scripts loaded from "flipbook" folder -->
-    <script type="text/javascript" src="flipbook/extras/jquery.min.1.7.js"></script>
-    <script type="text/javascript" src="flipbook/extras/jquery-ui-1.8.20.full.min.js"></script>
-    <script type="text/javascript" src="flipbook/extras/modernizr.2.5.3.min.js"></script>
-    <script type="text/javascript" src="flipbook/lib/hash.js"></script>
-
-    <!-- Flipbook Configuration -->
-    <script type="text/javascript">
-        var flipbookcfg = {
-            url: "./menu/", /* Loads images directly from the "menu/" folder */
-            cover: 0,
-            numPages: 8,    /* Change this to your total number of pages (e.g., 8, 9, 10...) */
-            textTip: "Press ESC to exit. Use the keyboard arrows to change the page.",
-            showSlider: "null",
-            showSocial: "null",
-            showformat: "11",
-            title: "",
-            tagtitle: "Flipbook",
-            description: "",
-            showDownload: "null",
-            backlink: "https://basilvalleycafe.github.io/menu/",
-            opacity: "0.4",
-            name: "menuViewer",
-            direction: "ltr",
-            flipsound: "null",
-            widthimg: "2481",
-            heightimg: "3508"
-        };
-    </script>
+    <title>Our Menu</title>
 
     <style>
         * {
@@ -49,135 +13,87 @@
             box-sizing: border-box;
         }
 
-        /* =========================================
-            MOBILE VIEW STYLES (Max-Width: 767px)
-            ========================================= */
-        @media (max-width: 767px) {
-            html, body {
-                width: 100%;
-                min-height: 100vh;
-                background: #fff !important;
-                overflow-x: hidden;
-                overflow-y: auto;
-                font-family: Arial, sans-serif;
-                padding: 12px 0;
-                scroll-behavior: smooth;
-            }
-
-            #desktop-flipbook-wrapper {
-                display: none !important;
-            }
-
-            #mobile-menu-wrapper {
-                display: block;
-            }
-
-            .menu-viewer {
-                width: 100%;
-                margin: 0 auto;
-                display: flex;
-                flex-direction: column;
-                gap: 20px;
-                padding: 0 10px;
-            }
-
-            .menu-page {
-                display: block;
-                width: 100%;
-                height: auto;
-                border: 0;
-                opacity: 0;
-                transition: opacity 0.35s ease-in-out;
-                background: #1a1a1a;
-                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
-                border-radius: 4px;
-            }
-
-            .menu-page.loaded {
-                opacity: 1;
-            }
-
-            .loading-indicator {
-                padding: 20px;
-                color: #111;
-                text-align: center;
-                font-size: 13px;
-            }
+        html {
+            width: 100%;
+            background: #111;
+            scroll-behavior: smooth;
         }
 
-        /* =========================================
-            DESKTOP VIEW STYLES (Min-Width: 768px)
-            ========================================= */
-        @media (min-width: 768px) {
+        body {
+            width: 100%;
+            min-height: 100vh;
+            background: #111;
+            overflow-x: hidden;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Full-width, continuous menu pages */
+        .menu-viewer {
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .menu-page {
+            display: block;
+            width: 100%;
+            height: auto;
+            margin: 0;
+            padding: 0;
+            border: 0;
+            object-fit: contain;
+        }
+
+        /* Close button */
+        .close-button {
+            position: fixed;
+            top: 16px;
+            left: 16px;
+            z-index: 10;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 44px;
+            height: 44px;
+            border: none;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.75);
+            color: white;
+            font-size: 27px;
+            text-decoration: none;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .close-button:hover {
+            background: #333;
+        }
+
+        /* Loading and error messages */
+        .status {
+            padding: 30px 15px;
+            color: #fff;
+            text-align: center;
+            font-size: 15px;
+        }
+
+        .status a {
+            color: #fff;
+        }
+
+        @media print {
+            .close-button,
+            .status {
+                display: none;
+            }
+
+            html,
             body {
-                overflow-y: scroll;
                 background: white;
             }
 
-            #mobile-menu-wrapper {
-                display: none !important;
-            }
-
-            #desktop-flipbook-wrapper {
-                display: block;
-            }
-
-            .nav-arrow {
-                position: fixed;
-                top: 50%;
-                transform: translateY(-50%);
-                z-index: 999;
-                cursor: pointer;
-                width: 50px;
-                height: auto;
-            }
-
-            .nav-arrow.prev {
-                left: 10px;
-            }
-
-            .nav-arrow.next {
-                right: 10px;
-            }
-
-            ::-webkit-scrollbar {
-                width: 8px;
-            }
-
-            ::-webkit-scrollbar-track {
-                background-color: #f1f1f1;
-            }
-
-            ::-webkit-scrollbar-thumb {
-                background-color: #888;
-            }
-
-            ::-webkit-scrollbar-thumb:hover {
-                background-color: #555;
-            }
-
-            .logo-backs {
-                opacity: 0.4;
-            }
-
-            .magazine-viewport .container {
-                width: 1980px;
-                height: 2105px;
-            }
-
-            .magazine-viewport .magazine {
-                width: 1980px;
-                height: 2105px;
-                left: -990px;
-            }
-
-            .magazine-viewport .page {
-                width: 990px;
-                height: 2105px;
-            }
-
-            .magazine-viewport .previous-button {
-                height: 2105px;
+            .menu-page {
+                width: 100%;
+                break-inside: avoid;
             }
         }
     </style>
@@ -185,176 +101,44 @@
 
 <body>
 
-    <!-- 1. MOBILE CONTINUOUS SCROLL VIEW -->
-    <div id="mobile-menu-wrapper">
-        <main class="menu-viewer" id="menuViewer"></main>
-        <div class="loading-indicator" id="loadingIndicator">Loading menu...</div>
-    </div>
+    <main class="menu-viewer" id="menuViewer"></main>
 
-    <!-- 2. DESKTOP INTERACTIVE FLIPBOOK VIEW -->
-    <div id="desktop-flipbook-wrapper">
-        <audio id="audio" src="flipbook/pics/page-flip.mp3"></audio>
+    <script>
+        const viewer = document.getElementById("menuViewer");
 
-        <div class="flipbook-title" style="display: none;">
-            <h1></h1>
-            <h2></h2>
-            <p></p>
-        </div>
+        // Change this number to match your total PNG pages.
+        const totalPages = 8;
 
-        <div id="canvas">
-            <div class="magazine-viewport" id="flipfull">
-                <div class="container">
-                    <div class="magazine">
-                        <div ignore="1" class="next-button"></div>
-                        <div ignore="1" class="previous-button"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Navigation Arrows -->
-        <img id="prevArrow" src="flipbook/pics/prev.png" class="nav-arrow prev" alt="Previous Page">
-        <img id="nextArrow" src="flipbook/pics/next.png" class="nav-arrow next" alt="Next Page">
-    </div>
-
-    <!-- Flipbook Engine Core -->
-    <script type="text/javascript" src="flipbook/js/core5.js"></script>
-
-    <!-- Smart Device Initializer -->
-    <script type="text/javascript">
-        const isDesktop = window.innerWidth >= 768;
-
-        if (isDesktop) {
-            // ==========================================
-            // DESKTOP FLIPBOOK INITIALIZER
-            // ==========================================
-            $('.modal-config').fadeIn();
-
-            yepnope({
-                test: Modernizr.csstransforms,
-                yep: ['flipbook/lib/turn.min.js'],
-                nope: ['flipbook/lib/turn.html4.min.js', 'flipbook/css/jquery.ui.html4.css'],
-                both: [
-                    'flipbook/lib/zoom.min.js',
-                    'flipbook/css/jquery.ui.css',
-                    'flipbook/js/magazineoff.js',
-                    'flipbook/css/style.css'
-                ],
-                complete: function () {
-                    if (typeof loadApp === "function") {
-                        loadApp();
-                    }
-                    initFlipbookArrows();
-                }
-            });
-
-            function updateArrows() {
-                if (!$('.magazine').turn('is')) return;
-                var currentPage = $('.magazine').turn('page');
-                var totalPages = $('.magazine').turn('pages');
-
-                var prevBtn = document.getElementById('prevArrow');
-                var nextBtn = document.getElementById('nextArrow');
-
-                if (currentPage === 1) {
-                    prevBtn.style.opacity = '0.3';
-                    prevBtn.style.pointerEvents = 'none';
-                } else {
-                    prevBtn.style.opacity = '1';
-                    prevBtn.style.pointerEvents = 'auto';
-                }
-
-                if (currentPage === totalPages) {
-                    nextBtn.style.opacity = '0.3';
-                    nextBtn.style.pointerEvents = 'none';
-                } else {
-                    nextBtn.style.opacity = '1';
-                    nextBtn.style.pointerEvents = 'auto';
-                }
-            }
-
-            function initFlipbookArrows() {
-                $('.magazine').bind('turned', function () {
-                    updateArrows();
-                });
-
-                document.getElementById('prevArrow').addEventListener('click', function () {
-                    $('.magazine').turn('previous');
-                });
-
-                document.getElementById('nextArrow').addEventListener('click', function () {
-                    $('.magazine').turn('next');
-                });
-
-                setTimeout(updateArrows, 300);
-            }
-
-        } else {
-            // ==========================================
-            // MOBILE VERTICAL SCROLL VIEWER
-            // ==========================================
-            const viewer = document.getElementById("menuViewer");
-            const indicator = document.getElementById("loadingIndicator");
-            
-            // Set your max expected pages here (matches desktop numPages)
-            const maxPages = 8; 
-
-            async function loadMobileMenu() {
-                for (let i = 1; i <= maxPages; i++) {
-                    // Try loading .png first, then .jpg if png fails
-                    let path = `menu/${i}.png`;
-                    let exists = await checkFile(path);
-
-                    if (!exists) {
-                        path = `menu/${i}.jpg`;
-                        exists = await checkFile(path);
-                    }
-
-                    if (exists) {
-                        const img = document.createElement("img");
-                        img.className = "menu-page";
-                        img.src = path;
-                        img.alt = `Menu page ${i}`;
-                        img.loading = i === 1 ? "eager" : "lazy";
-                        img.decoding = "async";
-
-                        img.onload = function () {
-                            this.classList.add("loaded");
-                        };
-
-                        viewer.appendChild(img);
-                    }
-                }
-                if (indicator) indicator.remove();
-            }
-
-            function checkFile(url) {
-                return new Promise((resolve) => {
-                    const img = new Image();
-                    img.onload = () => resolve(true);
-                    img.onerror = () => resolve(false);
-                    img.src = url;
-                });
-            }
-
-            loadMobileMenu();
+        function showStatus(message) {
+            const status = document.createElement("div");
+            status.className = "status";
+            status.textContent = message;
+            viewer.appendChild(status);
         }
 
-        // Escape key to return to index.html
+        for (let i = 1; i <= totalPages; i++) {
+            const img = document.createElement("img");
+
+            img.className = "menu-page";
+            img.src = `menu/${i}.png`;
+            img.alt = `Menu page ${i}`;
+            img.loading = i === 1 ? "eager" : "lazy";
+            img.decoding = "async";
+
+            img.onerror = function () {
+                this.remove();
+                showStatus(`Could not load menu/${i}.png`);
+            };
+
+            viewer.appendChild(img);
+        }
+
+        // Close with Escape, like a document viewer.
         document.addEventListener("keydown", function (event) {
             if (event.key === "Escape") {
                 window.location.href = "index.html";
             }
         });
-    </script>
-
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-144220429-1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-        gtag('config', 'UA-144220429-1');
     </script>
 
 </body>
